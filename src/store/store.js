@@ -1,6 +1,6 @@
 import { compose, createStore, applyMiddleware} from 'redux';
 import logger from 'redux-logger'; 
-
+import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 
@@ -19,7 +19,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
  This line creates a new reducer that has built-in state persistence functionality.
  */
 
-const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(
+const middleWares = [process.env.NODE_ENV !== 'production' && logger, thunk ].filter(
   Boolean
 );
 //production or development
