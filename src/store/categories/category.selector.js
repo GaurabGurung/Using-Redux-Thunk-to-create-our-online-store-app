@@ -20,7 +20,10 @@ export const selectCategoriesMap = createSelector(
             acc[title.toLowerCase()] = items;  //This part assigns the items array to the value associated with the "title', we are using an array: [title] because title is property with multiple values in each object 
             return acc;
         }, {})
-       
     )
 )
 
+export const selectCategoriesIsLoading = createSelector(
+    [selectCategoriesReducer],
+    (categoriesSlice)=> categoriesSlice.isLoading
+);

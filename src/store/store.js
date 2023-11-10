@@ -9,7 +9,8 @@ import { rootReducer } from './root-reducer';
 const persistConfig = {
   key: 'root', // It says that we want to persist everything from the root level
   storage, // It helps to store in the local web storage
-  blacklist : ['user']  //it helps us to blacklist whatever we dont want to persist, So userReducer has a AuthListener which migh conflict with the redux-persist, so we will black list it.
+  // blacklist : ['user']  //it helps us to blacklist whatever we dont want to persist, So userReducer has a AuthListener which migh conflict with the redux-persist, so we will black list it.
+  whitelist: ['cart']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -19,7 +20,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
  This line creates a new reducer that has built-in state persistence functionality.
  */
 
-const middleWares = [process.env.NODE_ENV !== 'production' && logger, thunk ].filter(
+const middleWares = [process.env.NODE_ENV === 'production' && logger, thunk ].filter(
   Boolean
 );
 //production or development
